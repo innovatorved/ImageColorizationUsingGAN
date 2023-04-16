@@ -1,4 +1,5 @@
 import warnings
+
 warnings.filterwarnings("ignore")
 
 import os
@@ -28,15 +29,18 @@ model_path = "model/ImageColorizationModel.pth"
 
 
 model = None
-if not os.path.exists(model_path) :
+if not os.path.exists(model_path):
     print("Model not find")
     download_from_drive()
     print("Model Downloaded")
 else:
-    model = load_model(model_class=MainModel , file_path=model_path)
+    model = load_model_with_cpu(model_class=MainModel, file_path=model_path)
     print("Model Loaded")
 
+
 def predict_and_return_image(image):
+    if image is None:
+        return None
     data = create_lab_tensors(image)
     model.net_G.eval()
     with torch.no_grad():
@@ -48,8 +52,7 @@ def predict_and_return_image(image):
     return fake_imgs[0]
 
 
-
-
+import gradio as gr
 
 title = "Black&White to Color image"
 description = "Transforming Black & White Image in to colored image. Upload a black and white image to see it colorized by our deep learning model."
@@ -59,7 +62,5 @@ gr.Interface(
     title=title,
     description=description,
     inputs=[gr.Image(label="Gray Scale Image")],
-    outputs=[
-        gr.Image(label="Predicted Colored Image")
-    ],
+    outputs=[gr.Image(label="Predicted Colored Image")],
 ).launch(share=True, debug=True)
