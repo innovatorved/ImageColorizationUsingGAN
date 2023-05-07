@@ -1,3 +1,14 @@
+---
+license: apache-2.0
+title: Black&White to Color image
+sdk: gradio
+emoji: 🚀
+colorFrom: indigo
+colorTo: gray
+app_file: main.py
+pinned: false
+---
+
 # Image Colorization Using GAN
 
 Final Year Project 

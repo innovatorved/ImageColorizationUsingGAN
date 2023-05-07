@@ -63,4 +63,4 @@ gr.Interface(
     description=description,
     inputs=[gr.Image(label="Gray Scale Image")],
     outputs=[gr.Image(label="Predicted Colored Image")],
-).launch(share=True, debug=True)
+).launch()
