@@ -1,2 +1,4 @@
 model/*.pth
 model/*.pth
+
+*/__pycache__
