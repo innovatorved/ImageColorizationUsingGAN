@@ -9,6 +9,7 @@ fastai = "*"
 torch = "*"
 torchvision = "*"
 torchaudio = "*"
+scikit-image = "*"
 
 [dev-packages]
 
