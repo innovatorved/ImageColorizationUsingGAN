@@ -1,1 +1,2 @@
-model/ImageColorizationModel.pth
+model/*.pth
+model/*.pth

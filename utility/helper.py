@@ -22,10 +22,8 @@ import gdown
 SIZE = 256
 
 
-def download_from_drive():
-    url = "https://drive.google.com/uc?id=1EhuMET76c02VFyRW8Pie7BwNCDHmQiad"
+def download_from_drive(url , output):
     try:
-        output = "model/ImageColorizationModel.pth"
         gdown.download(url, output, quiet=False)
         return True
     except:

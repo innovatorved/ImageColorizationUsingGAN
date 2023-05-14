@@ -25,20 +25,24 @@ from model import *
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-model_path = "model/ImageColorizationModel.pth"
+model_path_1 = "model/ImageColorizationModel.pth"
+model_path_2 = "model/ImageColorizationModel-ver2.pth"
+
+MODEL_VER_1 = "https://drive.google.com/uc?id=1EhuMET76c02VFyRW8Pie7BwNCDHmQiad"
+MODEL_VER_2 = "https://drive.google.com/uc?id=1SX9StBHdb-DO1lcDcy0Uz8OVmzoFdlxS"
 
 
 model = None
-if not os.path.exists(model_path):
-    print("Model not find")
-    download_from_drive()
-    print("Model Downloaded")
-else:
-    model = load_model_with_cpu(model_class=MainModel, file_path=model_path)
-    print("Model Loaded")
+if not os.path.exists(model_path_1):
+    download_from_drive(MODEL_VER_1 , model_path_1)
+if not os.path.exists(model_path_2):
+    download_from_drive(MODEL_VER_2 , model_path_2)
 
+model_1 = load_model_with_cpu(model_class=MainModel, file_path=model_path_1)
+model_2 = load_model_with_cpu(model_class=MainModel, file_path=model_path_2)
 
-def predict_and_return_image(image):
+def predict_and_return_image(image , model_name):
+    model = model_1 if model_name == "MODEL_1" else model_2
     if image is None:
         return None
     data = create_lab_tensors(image)
@@ -61,6 +65,6 @@ gr.Interface(
     fn=predict_and_return_image,
     title=title,
     description=description,
-    inputs=[gr.Image(label="Gray Scale Image")],
+    inputs=[gr.Image(label="Gray Scale Image") , gr.Dropdown(["MODEL_1" , "MODEL_2"])],
     outputs=[gr.Image(label="Predicted Colored Image")],
 ).launch()
