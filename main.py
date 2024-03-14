@@ -28,8 +28,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model_path_1 = "model/ImageColorizationModel.pth"
 model_path_2 = "model/ImageColorizationModel-ver2.pth"
 
-MODEL_VER_1 = "https://drive.google.com/uc?id=1EhuMET76c02VFyRW8Pie7BwNCDHmQiad"
-MODEL_VER_2 = "https://drive.google.com/uc?id=1SX9StBHdb-DO1lcDcy0Uz8OVmzoFdlxS"
+MODEL_VER_1 = "https://drive.google.com/uc?id=1yQzTSu6zQskzmWGDRXQGz8AgswxyJFJa" 
+MODEL_VER_2 = "https://drive.google.com/uc?id=12TLumE_HoqwrMzNq9Qu9jSPhlbn5mob9" 
 
 
 model = None
